@@ -5,5 +5,3 @@ RUN apt update && apt install -y \
 RUN cp /usr/lib/apache2/modules/mod_auth_openidc.so /usr/local/apache2/modules/
 RUN mv conf/httpd.conf conf/container_httpd.conf
 CMD ["httpd-foreground"]
-
-TEST

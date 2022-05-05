@@ -24,12 +24,12 @@ Open reverseproxy/conf/reverseproxy.conf and enter the configuration from OneLog
 ``docker-compose up``
 
 ### Test
-pen ``http://localhost`` in your browser.
+Open ``http://localhost`` in your browser.
 You will find a simple page with three links:
 *  ``http://localhost/public``
 *  ``http://localhost/private``
 *  ``http://localhost/index``
 
-Open ``http://localhost/public`` and you will see the public page.
-Open ``http://localhost/private`` and you will see the private page... NOT! Instead you'll should see a OneLogin login page and only after login you will see the private page.
+Open ``http://localhost/public`` and you will see the public page.<br>
+Open ``http://localhost/private`` and you will see the private page... NOT! Instead you'll should see a OneLogin login page and only after login you will see the private page.<br>
 Open ``http://localhost/index`` and you will see the <i>Start</i> page.

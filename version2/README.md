@@ -10,9 +10,7 @@ In OneLogin Administrative page for your app collect this information:
 * Client Secret
 * Issuer URL
 
-<!-- wp:image {"id":383,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://ingo.kaulbach.de/wp-content/uploads/2022/05/image-1024x768.png" alt="" class="wp-image-383"/></figure>
-<!-- /wp:image -->
+![OneLoginConfig](../images/OneLoginConfig.png)
 
 In Configuration page add Redirect URI:
 * http://localhost/private/redirect_uri

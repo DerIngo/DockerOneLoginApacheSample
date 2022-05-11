@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+
+  loadbalancer:
+    build: ./loadbalancer
+    hostname: loadbalancer
+    volumes:
+      - ${PWD}/loadbalancer/conf/loadbalancer_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/loadbalancer/conf/loadbalancer.conf:/usr/local/apache2/conf/loadbalancer.conf
+    ports:
+      - 80:80
+
+  reverseproxy_1:
+    build: ./reverseproxy
+    hostname: reverseproxy_1
+    volumes:
+      - ./reverseproxy/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/reverseproxy/conf/reverseproxy_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/reverseproxy/conf/reverseproxy.conf:/usr/local/apache2/conf/reverseproxy.conf
+
+  reverseproxy_2:
+    build: ./reverseproxy
+    hostname: reverseproxy_2
+    volumes:
+      - ./reverseproxy/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/reverseproxy/conf/reverseproxy_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/reverseproxy/conf/reverseproxy.conf:/usr/local/apache2/conf/reverseproxy.conf
+
+
+  showheaders:
+    build: ./showheaders
+    hostname: showheaders
+    ports:
+      - 8080:8080
+      

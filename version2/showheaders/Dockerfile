@@ -1,6 +1,7 @@
    FROM tomcat:8.5-jdk8-openjdk-slim
     RUN apt update && apt install -y \
-        maven
+        maven \
+        git
     RUN git clone https://github.com/DerIngo/ShowHeaders.git
 WORKDIR ShowHeaders
     RUN mvn package

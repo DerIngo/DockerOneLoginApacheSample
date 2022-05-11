@@ -31,5 +31,5 @@ You will find a simple page with four links:
 
 Open ``http://localhost/public`` and you will see the public page.<br>
 Open ``http://localhost/private`` and you will see the private page... NOT! Instead you'll should see a OneLogin login page and only after login you will see the private page.<br>
-Open ``http://localhost/index`` and you will see the <i>Start</i> page.
-Open ``http://localhost/private`` and you will see the ShowHeades page (if you are logged in). This page shows all Headers.<br>
+Open ``http://localhost/index`` and you will see the <i>Start</i> page.<br>
+Open ``http://localhost/showheaders`` and you will see the ShowHeades page (if you are logged in). This page shows all Headers.<br>

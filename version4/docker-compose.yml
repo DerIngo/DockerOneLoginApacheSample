@@ -1,0 +1,101 @@
+version: '3.8'
+services:
+
+  loadbalancer:
+    build: ./loadbalancer
+    hostname: loadbalancer
+    volumes:
+      - ${PWD}/loadbalancer/conf/loadbalancer_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/loadbalancer/conf/loadbalancer.conf:/usr/local/apache2/conf/loadbalancer.conf
+    networks:
+      public_network:
+      dmz_network:
+    ports:
+      - 80:80
+
+  reverseproxy_1:
+    build: ./reverseproxy
+    hostname: reverseproxy_1
+    volumes:
+      - ./reverseproxy/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/reverseproxy/conf/reverseproxy_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/reverseproxy/conf/reverseproxy.conf:/usr/local/apache2/conf/reverseproxy.conf
+    networks:
+      dmz_network:
+      private_network:
+
+
+  reverseproxy_2:
+    build: ./reverseproxy
+    hostname: reverseproxy_2
+    volumes:
+      - ./reverseproxy/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/reverseproxy/conf/reverseproxy_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/reverseproxy/conf/reverseproxy.conf:/usr/local/apache2/conf/reverseproxy.conf
+    networks:
+      dmz_network:
+      private_network:
+
+
+  public_1: 
+    image: httpd:2.4
+    hostname: public_1
+    volumes:
+      - ./public/public_html:/usr/local/apache2/htdocs
+    networks:
+      dmz_network:
+
+  public_2: 
+    image: httpd:2.4
+    hostname: public_2
+    volumes:
+      - ./public/public_html:/usr/local/apache2/htdocs
+    networks:
+      dmz_network:
+
+  private_1: 
+    image: httpd:2.4
+    hostname: private_1
+    volumes:
+      - ./private/public_html:/usr/local/apache2/htdocs
+    networks:
+      private_network:
+
+  private_2: 
+    image: httpd:2.4
+    hostname: private_2
+    volumes:
+      - ./private/public_html:/usr/local/apache2/htdocs
+    networks:
+      private_network:
+
+  showheaders:
+    build: ./showheaders
+    hostname: showheaders
+    networks:
+      private_network:
+
+  user: 
+    image: httpd:2.4
+    hostname: user
+    volumes:
+      - ./user/public_html:/usr/local/apache2/htdocs
+    networks:
+      private_network:
+  
+  admin: 
+    image: httpd:2.4
+    hostname: admin
+    volumes:
+      - ./admin/public_html:/usr/local/apache2/htdocs
+    networks:
+      private_network:
+
+networks:
+  public_network:
+    external: true
+  dmz_network:
+    external: false
+  private_network:
+    external: false
+    

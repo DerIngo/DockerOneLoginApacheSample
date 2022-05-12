@@ -40,6 +40,9 @@ In Configuration page add Redirect URI:
 Open reverseproxy/conf/reverseproxy.conf and enter the configuration from OneLogin
 
 ### Start
+Bevor the first start the public network needs to be created:<br>
+``docker network create public_network`` <br>
+<br>
 ``docker-compose up``
 
 ### Test

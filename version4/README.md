@@ -36,8 +36,11 @@ In OneLogin Administrative page for your app collect this information:
 In Configuration page add Redirect URI:
 * http://localhost/private/redirect_uri
 
+Enable Self Registration: Users -> Self registration
+
 ### Configuration
-Open reverseproxy/conf/reverseproxy.conf and enter the configuration from OneLogin
+Open reverseproxy/conf/reverseproxy.conf and enter the configuration from OneLogin.
+Open public/public_html/index.html and edit registration link.
 
 ### Start
 Bevor the first start the public network needs to be created:<br>

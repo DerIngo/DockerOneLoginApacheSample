@@ -84,7 +84,13 @@ body {
 
 /* Page: Index */
 #pageIndex #login {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-    }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#pageIndex #registration {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+}

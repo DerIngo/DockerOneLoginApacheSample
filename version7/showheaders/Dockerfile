@@ -3,6 +3,8 @@
         maven \
         git
     RUN git clone https://github.com/DerIngo/ShowHeaders.git
+   COPY ./conf/*.crt /usr/local/share/ca-certificates/
+    RUN update-ca-certificates
 WORKDIR ShowHeaders
     RUN mvn package
 WORKDIR $CATALINA_HOME

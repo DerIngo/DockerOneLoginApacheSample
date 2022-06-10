@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+
+  loadbalancer:
+    build: ./loadbalancer
+    hostname: loadbalancer
+    volumes:
+      - ${PWD}/loadbalancer/conf/loadbalancer_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/loadbalancer/conf/loadbalancer.conf:/usr/local/apache2/conf/loadbalancer.conf
+      - ${PWD}/loadbalancer/conf/loadbalancer-ssl.conf:/usr/local/apache2/conf/loadbalancer-ssl.conf
+      - ${PWD}/certs/loadbalancer.crt:/usr/local/apache2/conf/server.crt
+      - ${PWD}/certs/loadbalancer-key.pem:/usr/local/apache2/conf/server.key
+      - ${PWD}/certs/loadbalancer-combined.key:/usr/local/apache2/conf/combined.key
+    ports:
+      - 80:80
+      - 443:443
+
+  server_1: 
+    build: ./server_1
+    hostname: server_1
+    volumes:
+      - ./server_1/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/server_1/conf/server_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/server_1/conf/server.conf:/usr/local/apache2/conf/server.conf
+      - ${PWD}/server_1/conf/server-ssl.conf:/usr/local/apache2/conf/server-ssl.conf
+      - ${PWD}/certs/server_1.crt:/usr/local/apache2/conf/server.crt
+      - ${PWD}/certs/server_1-key.pem:/usr/local/apache2/conf/server.key
+    ports:
+      - 8091:443
+
+  server_2: 
+    build: ./server_2
+    hostname: server_2
+    volumes:
+      - ./server_2/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/server_2/conf/server_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/server_2/conf/server.conf:/usr/local/apache2/conf/server.conf
+      - ${PWD}/server_2/conf/server-ssl.conf:/usr/local/apache2/conf/server-ssl.conf
+      - ${PWD}/certs/server_2.crt:/usr/local/apache2/conf/server.crt
+      - ${PWD}/certs/server_2-key.pem:/usr/local/apache2/conf/server.key
+    ports:
+      - 8092:443
+

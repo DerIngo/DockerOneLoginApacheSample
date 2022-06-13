@@ -5,7 +5,7 @@
 WORKDIR /app
     RUN mvn package
    COPY . /app
-    RUN mvn package
+    RUN mvn package -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
 WORKDIR $CATALINA_HOME
     RUN mv /app/target/ROOT.war webapps
  EXPOSE 8080

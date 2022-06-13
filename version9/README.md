@@ -1,6 +1,5 @@
 # DockerOneLoginApacheSample
-Sample App for a Apache based Reverse Proxy with OneLogin for authentication TBD: and authorization<br>
-UPDATE: The authorization can not be done this way, because OneLogin does not provide application roles.
+Sample App for a Apache based Reverse Proxy with OneLogin for authentication.
 
 ## Version 9
 Three networks:

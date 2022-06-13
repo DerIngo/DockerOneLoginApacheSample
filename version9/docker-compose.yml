@@ -38,7 +38,7 @@ services:
     build: ./oneloginjavaappsample
     hostname: private1
     volumes:
-      - ${PWD}/conf/server.properties:/conf/local.properties
+      - ${PWD}/oneloginjavaappsample/conf/server.properties:/conf/local.properties
     environment:
       - localconf=/conf/local.properties
     networks:
@@ -48,7 +48,7 @@ services:
     build: ./oneloginjavaappsample
     hostname: private2
     volumes:
-      - ${PWD}/conf/server.properties:/conf/local.properties
+      - ${PWD}/oneloginjavaappsample/conf/server.properties:/conf/local.properties
     environment:
       - localconf=/conf/local.properties
     networks:

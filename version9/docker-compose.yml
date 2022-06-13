@@ -1,0 +1,64 @@
+version: '3.8'
+services:
+
+  reverseproxy:
+    build: ./reverseproxy
+    hostname: reverseproxy
+    volumes:
+      - ./reverseproxy/public_html:/usr/local/apache2/htdocs
+      - ${PWD}/reverseproxy/conf/reverseproxy_httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ${PWD}/reverseproxy/conf/reverseproxy.conf:/usr/local/apache2/conf/reverseproxy.conf
+      - ${PWD}/reverseproxy/conf/reverseproxy-ssl.conf:/usr/local/apache2/conf/reverseproxy-ssl.conf
+    networks:
+      public_network:
+      dmz_network:
+      private_network:
+    ports:
+      - 80:80
+      - 443:443
+
+
+  public_1: 
+    image: httpd:2.4
+    hostname: public_1
+    volumes:
+      - ./public/public_html:/usr/local/apache2/htdocs
+    networks:
+      dmz_network:
+
+  public_2: 
+    image: httpd:2.4
+    hostname: public_2
+    volumes:
+      - ./public/public_html:/usr/local/apache2/htdocs
+    networks:
+      dmz_network:
+
+  private1: 
+    build: ./oneloginjavaappsample
+    hostname: private1
+    volumes:
+      - ${PWD}/conf/server.properties:/conf/local.properties
+    environment:
+      - localconf=/conf/local.properties
+    networks:
+      private_network:
+
+  private2: 
+    build: ./oneloginjavaappsample
+    hostname: private2
+    volumes:
+      - ${PWD}/conf/server.properties:/conf/local.properties
+    environment:
+      - localconf=/conf/local.properties
+    networks:
+      private_network:
+
+networks:
+  public_network:
+    external: true
+  dmz_network:
+    external: false
+  private_network:
+    external: false
+    

@@ -3,7 +3,7 @@
         maven
    COPY pom.xml /app/pom.xml
 WORKDIR /app
-    RUN mvn package
+    RUN mvn package -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
    COPY . /app
     RUN mvn package -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
 WORKDIR $CATALINA_HOME

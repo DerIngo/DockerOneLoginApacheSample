@@ -49,6 +49,8 @@ Open reverseproxy/conf/reverseproxy-ssl.conf and enter the configuration from On
 Open public/public_html/index.html and edit registration link.<br>
 Open oneloginjavaappsample/conf/server.properties and edit anything, if required.<br>
 <br>
+Copy trusted *.crt files into reverseproxy/conf directory.<br>
+<br>
 For API-Example: Open oneloginjavaappsample/src/resources/application.properties and enter the API configuration from OneLogin.<br>
 
 ### Start
